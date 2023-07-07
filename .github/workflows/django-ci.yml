@@ -1,23 +1,18 @@
-name: Django CI
+runs-on: ubuntu-latest
 
-on: [push, pull_request]
+steps:
+- name: Checkout code
+  uses: actions/checkout@v2
 
-jobs:
-  build:
+- name: Set up Python
+  uses: actions/setup-python@v2
+  with:
+    python-version: '3.10'
 
-    runs-on: ubuntu-latest
+- name: Install dependencies
+  run: pip install -r requirements.txt
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run tox
-      run: tox
+- name: Run tox
+  run: |
+    pip install tox
+    tox
