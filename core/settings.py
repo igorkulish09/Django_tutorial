@@ -1,7 +1,4 @@
 import os
-
-import catalog.apps
-
 from pathlib import Path
 
 
