@@ -19,5 +19,5 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run flake8
-      run: flake8
+    - name: Run tox
+      run: tox
