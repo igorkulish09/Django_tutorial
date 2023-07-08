@@ -7,9 +7,7 @@ class Command(BaseCommand):
     help_text = "Generates random users"
 
     def add_arguments(self, parser):
-        parser.add_argument(
-            "count", type=int, help="Indicates the number of users to be created"
-        )
+        parser.add_argument("count", type=int, help="Indicates the number of users to be created")
 
     def handle(self, *args, **kwargs):
         count = kwargs["count"]
