@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Command(BaseCommand):
-    help = "Deletes users"
+    help_del = "Deletes users"
 
     def add_arguments(self, parser):
         parser.add_argument("user_ids", nargs="+", type=int, help="User IDs to delete")
