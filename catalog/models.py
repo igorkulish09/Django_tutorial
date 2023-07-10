@@ -37,3 +37,26 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class City(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=100)
+    city = models.OneToOneField(City, on_delete=models.CASCADE)
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=100)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
