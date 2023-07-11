@@ -1,0 +1,9 @@
+{% if gip %}
+  <p>Гіпотенуза дорівнює: {{ gip }}</p>
+{% endif %}
+
+<form method="post" action="{% url 'triangle' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Обчислити</button>
+</form>

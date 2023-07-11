@@ -6,6 +6,10 @@ from django.views import generic
 
 from .models import Choice, Question
 
+from .forms import TriangleForm
+
+import math
+
 
 class IndexView(generic.ListView):
     template_name = "catalog/index.html"
@@ -49,3 +53,18 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse("catalog:results", args=(question.id,)))
+
+
+def triangle(request):
+    gip = None
+
+    if request.method == "POST":
+        form = TriangleForm(request.POST)
+        if form.is_valid():
+            cathetus1 = form.cleaned_data["cathetus1"]
+            cathetus2 = form.cleaned_data["cathetus2"]
+            gip = math.sqrt(cathetus1 ** 2 + cathetus2 ** 2)
+    else:
+        form = TriangleForm()
+
+    return render(request, "catalog/triangle.html", {"form": form, "gip": gip})
