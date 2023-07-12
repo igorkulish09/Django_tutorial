@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from catalog import views
 
+
 urlpatterns = [
     path("catalog/", include("catalog.urls")),
     path("admin/", admin.site.urls),
     path("triangle/", views.triangle, name="triangle"),
-    path("catalog/", include("catalog.urls")),
+    path("person/", views.PersonCreateView.as_view(), name="create_person"),
+    path("person/<int:pk>/", views.PersonUpdateView.as_view(), name="update_person"),
 ]
+
